@@ -10,7 +10,7 @@ steps:
 - name: linux_aarch64_
   image: condaforge/linux-anvil-aarch64
   commands:
-    - yum install -y make git
+    - yum install -y make git patch
     - curl -L -O https://github.com/Archiconda/build-tools/releases/download/0.2.0/Archiconda2-0.2.0-Linux-aarch64.sh
     - bash Archiconda2*.sh -b -p /root/archiconda2
     - export PATH="/root/archiconda2/bin:${PATH}"
