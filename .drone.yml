@@ -9,17 +9,21 @@ platform:
 steps:
 - name: linux_aarch64_
   image: condaforge/linux-anvil-aarch64
+  # image: arm64v8/ubuntu:18.04
   commands:
-    - yum install -y make git patch
+    # CentOS
+    - yum install -y make git
+    # Ubuntu
+    # - export LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
+    # - apt-get update && apt-get install -y bzip2 curl make
+    # - rm -f /usr/bin/{ar,addr2line,as,c++filt,dwp,elfedit,gprof,ld,ld.bfd,ld.gold,nm,objcopy,objdump,ranlib,readlef,size,strings,strip}
+    # Common
     - curl -L -O https://github.com/Archiconda/build-tools/releases/download/0.2.0/Archiconda2-0.2.0-Linux-aarch64.sh
     - bash Archiconda2*.sh -b -p /root/archiconda2
     - export PATH="/root/archiconda2/bin:${PATH}"
     - source /root/archiconda2/bin/activate root
     - conda config --set add_pip_as_python_dependency false
     - conda install -c conda-forge conda-build --yes
-    # - conda --version
-    # - conda config --show
-    # - conda list
     # Hardcode the config for testing for now
     - conda build -m ci_support/linux_.yaml .
     - export PACKAGE_NAME=`conda build -m ci_support/linux_.yaml . --output`
