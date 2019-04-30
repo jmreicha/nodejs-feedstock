@@ -17,8 +17,9 @@ steps:
     - source /root/archiconda2/bin/activate root
     - conda config --set add_pip_as_python_dependency false
     - conda install -c conda-forge conda-build --yes
-    - conda --version
-    - conda config --show
-    - conda list
-    - conda build -m ci_support/${CONFIG}.yaml .
-    - export PACKAGE_NAME=`conda build -m ci_support/${CONFIG}.yaml . --output`
+    # - conda --version
+    # - conda config --show
+    # - conda list
+    # Hardcode the config for testing for now
+    - conda build -m ci_support/linux_.yaml .
+    - export PACKAGE_NAME=`conda build -m ci_support/linux_.yaml . --output`

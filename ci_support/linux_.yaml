@@ -1,0 +1,12 @@
+c_compiler:
+- gcc
+channel_sources:
+#- conda-forge,defaults
+- archiarm,
+channel_targets:
+#- conda-forge main
+- archiarm main
+cxx_compiler:
+- gxx
+docker_image:
+- condaforge/linux-anvil-comp7
