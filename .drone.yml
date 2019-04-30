@@ -14,9 +14,13 @@ steps:
     # CentOS
     # - yum install -y make git
     # Ubuntu
-    - export LANG=en_US.UTF-8; export LANGUAGE=en_US:en; export LC_ALL=en_US.UTF-8
-    - apt-get update && apt-get install -y bzip2 curl g++ make
+    - export LANG=en_US.UTF-8
+    - export LANGUAGE=en_US:en
+    - export LC_ALL=en_US.UTF-8
+    - apt-get update && apt-get install -y bzip2 curl g++ build-essential
     - rm -f /usr/bin/{ar,addr2line,as,c++filt,dwp,elfedit,gprof,ld,ld.bfd,ld.gold,nm,objcopy,objdump,ranlib,readlef,size,strings,strip}
+    - env
+    - exit
     # Common
     #- curl -L -O https://github.com/Archiconda/build-tools/releases/download/0.2.0/Archiconda2-0.2.0-Linux-aarch64.sh
     - curl -L -O https://github.com/Archiconda/build-tools/releases/download/0.1.2/Archiconda3Builder-0.1.2-Linux-aarch64.sh
