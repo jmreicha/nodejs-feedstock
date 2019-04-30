@@ -27,8 +27,10 @@ steps:
     # Drone runs commands as sh so doesn't have 'source'
     # - source /root/archiconda3/bin/activate root
     - . /root/archiconda3/bin/activate root
+    - conda --version
     - conda config --set add_pip_as_python_dependency false
     - conda install -c conda-forge conda-build --yes
     # Hardcode the config for testing for now
+    - env
     - conda build -m ci_support/linux_.yaml .
     - export PACKAGE_NAME=`conda build -m ci_support/linux_.yaml . --output`
