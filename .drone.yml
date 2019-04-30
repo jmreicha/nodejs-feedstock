@@ -21,7 +21,9 @@ steps:
     - curl -L -O https://github.com/Archiconda/build-tools/releases/download/0.2.0/Archiconda2-0.2.0-Linux-aarch64.sh
     - bash Archiconda2*.sh -b -p /root/archiconda2
     - export PATH="/root/archiconda2/bin:${PATH}"
-    - source /root/archiconda2/bin/activate root
+    # Drone runs commands as shell commands which doesn't have access to 'source'
+    # - source /root/archiconda2/bin/activate root
+    - . /root/archiconda2/bin/activate root
     - conda config --set add_pip_as_python_dependency false
     - conda install -c conda-forge conda-build --yes
     # Hardcode the config for testing for now
