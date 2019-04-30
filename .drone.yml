@@ -23,16 +23,13 @@ steps:
     #- curl -L -O https://github.com/Archiconda/build-tools/releases/download/0.2.0/Archiconda2-0.2.0-Linux-aarch64.sh
     - curl -L -O https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh
     - bash Archiconda3*.sh -b -p /root/archiconda3
-    - export PATH="/root/archiconda3/bin:${PATH}"
+    - export PATH="/root/archiconda3/bin:$PATH"
     # Drone runs commands as sh so doesn't have 'source'
     # - source /root/archiconda3/bin/activate root
     - . /root/archiconda3/bin/activate root
-    - conda --version
     - conda config --set add_pip_as_python_dependency false
     - conda install -c conda-forge conda-build --yes
+    #- export PATH="/bin:/usr/bin:$PATH"
     # Hardcode the config for testing for now
-    - echo $PATH
-    - export PATH="/bin:/usr/bin:$PATH"
-    - echo $PATH
     - conda build -m ci_support/linux_.yaml .
     - export PACKAGE_NAME=`conda build -m ci_support/linux_.yaml . --output`
