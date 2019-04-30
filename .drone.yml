@@ -15,13 +15,13 @@ steps:
     # - yum install -y make git
     # Ubuntu
     - export LANG=en_US.UTF-8; export LANGUAGE=en_US:en; export LC_ALL=en_US.UTF-8
-    - apt-get update && apt-get install -y bzip2 curl make
+    - apt-get update && apt-get install -y bzip2 curl g++ make
     - rm -f /usr/bin/{ar,addr2line,as,c++filt,dwp,elfedit,gprof,ld,ld.bfd,ld.gold,nm,objcopy,objdump,ranlib,readlef,size,strings,strip}
     # Common
     - curl -L -O https://github.com/Archiconda/build-tools/releases/download/0.2.0/Archiconda2-0.2.0-Linux-aarch64.sh
     - bash Archiconda2*.sh -b -p /root/archiconda2
     - export PATH="/root/archiconda2/bin:${PATH}"
-    # Drone runs commands as shell commands which doesn't have access to 'source'
+    # Drone runs commands as sh so doesn't have 'source'
     # - source /root/archiconda2/bin/activate root
     - . /root/archiconda2/bin/activate root
     - conda config --set add_pip_as_python_dependency false
