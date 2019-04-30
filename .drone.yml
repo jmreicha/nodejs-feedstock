@@ -20,3 +20,5 @@ steps:
     - conda --version
     - conda config --show
     - conda list
+    - conda build -m ci_support/${CONFIG}.yaml .
+    - export PACKAGE_NAME=`conda build -m ci_support/${CONFIG}.yaml . --output`
