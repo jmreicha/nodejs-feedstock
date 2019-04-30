@@ -17,15 +17,13 @@ steps:
     - export LANG=en_US.UTF-8
     - export LANGUAGE=en_US:en
     - export LC_ALL=en_US.UTF-8
-    - apt-get update && apt-get install -y bzip2 curl g++ build-essential
+    - apt-get update && apt-get install -y bzip2 curl g++ make
     - rm -f /usr/bin/{ar,addr2line,as,c++filt,dwp,elfedit,gprof,ld,ld.bfd,ld.gold,nm,objcopy,objdump,ranlib,readlef,size,strings,strip}
-    - env
-    - ls /bin
     # Common
     #- curl -L -O https://github.com/Archiconda/build-tools/releases/download/0.2.0/Archiconda2-0.2.0-Linux-aarch64.sh
-    - curl -L -O https://github.com/Archiconda/build-tools/releases/download/0.1.2/Archiconda3Builder-0.1.2-Linux-aarch64.sh
+    - curl -L -O https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh
     - bash Archiconda3*.sh -b -p /root/archiconda3
-    - export PATH="/usr/bin:/root/archiconda3/bin:${PATH}"
+    - export PATH="/root/archiconda3/bin:${PATH}"
     # Drone runs commands as sh so doesn't have 'source'
     # - source /root/archiconda3/bin/activate root
     - . /root/archiconda3/bin/activate root
