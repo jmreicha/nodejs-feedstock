@@ -12,20 +12,19 @@ platform:
 
 steps:
 - name: Install dependencies
-  image: docker
-  volumes:
-  - name: docker
-    path: /var/run/docker.sock
+  image: condaforge/linux-anvil-aarch64
   environment:
     CONFIG: linux_aarch64_
     UPLOAD_PACKAGES: True
     PLATFORM: linux-aarch64
     DOCKER_IMAGE: condaforge/linux-anvil-aarch64
     #BINSTAR_TOKEN: $(BINSTAR_TOKEN)
+    BINSTAR_TOKEN: ""
   commands:
-    - ./.drone/run_docker_build.sh
-
-volumes:
-- name: docker
-  host:
-    path: /var/run/docker.sock
+    - pwd
+    - ls -lah
+    - export THISDIR="$( cd "$( dirname "$0" )" >/dev/null && pwd )"
+    - export PROVIDER_DIR="$(basename $THISDIR)"
+    - bash /home/conda/feedstock_root/"$PROVIDER_DIR"/build_steps.sh
+    # TODO Test build artifacts
+    - echo "Finished building"
