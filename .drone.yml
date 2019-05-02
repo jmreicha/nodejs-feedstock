@@ -22,6 +22,7 @@ steps:
     BINSTAR_TOKEN: ""
   commands:
     # TODO This bash shell is non interactive
+    - cat /usr/drone/bin/init
     - bash
     - env
     # TODO This spits out a message but it can be ignored
