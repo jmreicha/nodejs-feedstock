@@ -38,13 +38,14 @@ if [ -z "$CONFIG" ]; then
     exit 1
 fi
 
+echo "Docker image: ${DOCKER_IMAGE}"
+exit
+
 if [ -z "${DOCKER_IMAGE}" ]; then
     SHYAML_INSTALLED="$(shyaml --version || echo NO)"
     if [ "${SHYAML_INSTALLED}" == "NO" ]; then
         echo "WARNING: DOCKER_IMAGE variable not set and shyaml not installed. Falling back to condaforge/linux-anvil-aarch64"
         DOCKER_IMAGE="condaforge/linux-anvil-aarch64"
-    else
-        DOCKER_IMAGE="$(cat "${FEEDSTOCK_ROOT}/.ci_support/${CONFIG}.yaml" | shyaml get-value docker_image.0 condaforge/linux-anvil-aarch64 )"
     fi
 fi
 
