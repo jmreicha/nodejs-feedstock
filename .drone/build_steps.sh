@@ -36,7 +36,8 @@ cd $HOME
 set -x
 
 echo "dir: $(pwd)"
-echo "ls: $(ls)"
+
+# TODO Figure out how to get /drone/src to /home/conda
 
 export PYTHONUNBUFFERED=1
 #export FEEDSTOCK_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
