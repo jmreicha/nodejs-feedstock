@@ -10,7 +10,7 @@ set -xeuo pipefail
 # Conda setup
 
 # Use non-interactive cp
-unalias cp
+#unalias cp
 # Create conda user with the same uid as the host, so the container can write
 # to mounted volumes
 # Adapted from https://denibertovic.com/posts/handling-permissions-with-docker-volumes/
