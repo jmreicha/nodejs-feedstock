@@ -24,6 +24,7 @@ steps:
     - ls -lah
     - whoami
     - ls /home
+    - ls /root
     - env
     - export THISDIR="$( cd "$( dirname "$0" )" >/dev/null && pwd )"
     - export PROVIDER_DIR="$(basename $THISDIR)"
