@@ -28,12 +28,14 @@ cp -R /etc/skel $HOME && chown -R conda:conda $HOME/skel && (ls -A1 $HOME/skel |
 cp /root/.condarc $HOME/.condarc && chown conda:conda $HOME/.condarc
 cd $HOME
 
-# Source Conda environment
+# Source base Conda environment
 . /opt/conda/bin/activate
 
 # Build
 
-set -x
+#set -x
+
+echo "dir: $(pwd)"
 
 export PYTHONUNBUFFERED=1
 export FEEDSTOCK_ROOT=/home/conda/feedstock_root

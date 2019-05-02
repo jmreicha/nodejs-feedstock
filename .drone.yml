@@ -21,11 +21,7 @@ steps:
     #BINSTAR_TOKEN: $(BINSTAR_TOKEN)
     BINSTAR_TOKEN: ""
   commands:
-    #- cat /usr/drone/bin/init
-    - env
+    #- env
     - $(pwd)/.drone/build_steps.sh
-    #- export THISDIR="$( cd "$( dirname "$0" )" >/dev/null && pwd )"
-    #- export PROVIDER_DIR="$(basename $THISDIR)"
-    #- bash /home/conda/feedstock_root/"$PROVIDER_DIR"/build_steps.sh
     # TODO Test build artifacts
     - echo "Finished building"
