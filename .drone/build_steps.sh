@@ -36,12 +36,18 @@ cd $HOME
 #set -x
 
 echo "dir: $(pwd)"
+echo "ls: $(ls)"
 
 export PYTHONUNBUFFERED=1
-export FEEDSTOCK_ROOT=/home/conda/feedstock_root
-export RECIPE_ROOT=/home/conda/recipe_root
+export FEEDSTOCK_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
+export RECIPE_ROOT="${FEEDSTOCK_ROOT}/{{ recipe_dir }}"
+#export FEEDSTOCK_ROOT=/home/conda/feedstock_root
+#export RECIPE_ROOT=/home/conda/recipe_root
 export CI_SUPPORT=/home/conda/feedstock_root/.ci_support
 export CONFIG_FILE="${CI_SUPPORT}/${CONFIG}.yaml"
+
+ARTIFACTS="$FEEDSTOCK_ROOT/build_artifacts"
+mkdir -p "${ARTIFACTS}"
 
 cat >~/.condarc <<CONDARC
 
@@ -66,4 +72,4 @@ if [[ "${UPLOAD_PACKAGES}" != "False" ]]; then
     upload_package "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 fi
 
-touch "/home/conda/feedstock_root/build_artifacts/conda-forge-build-done-${CONFIG}"
+touch "${ARTIFACTS}/conda-forge-build-done-${CONFIG}"
