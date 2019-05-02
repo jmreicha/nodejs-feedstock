@@ -26,6 +26,8 @@ steps:
     - ls /home
     - ls /root
     - env
+    - su conda
+    - /opt/docker/bin/entrypoint
     - export THISDIR="$( cd "$( dirname "$0" )" >/dev/null && pwd )"
     - export PROVIDER_DIR="$(basename $THISDIR)"
     #- bash /home/conda/feedstock_root/"$PROVIDER_DIR"/build_steps.sh
