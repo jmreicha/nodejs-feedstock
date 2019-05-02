@@ -41,7 +41,7 @@ echo "dir: $(pwd)"
 
 export PYTHONUNBUFFERED=1
 #export FEEDSTOCK_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
-export FEEDSTOCK_ROOT="${CI_WORKSPACE}/${DRONE_REPO_NAME}"
+export FEEDSTOCK_ROOT="${CI_WORKSPACE}"
 export RECIPE_ROOT="${FEEDSTOCK_ROOT}/recipe"
 export CI_SUPPORT="${FEEDSTOCK_ROOT}/.ci_support"
 export ARTIFACTS="${FEEDSTOCK_ROOT}/build_artifacts"

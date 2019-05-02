@@ -23,7 +23,7 @@ steps:
   commands:
     #- env
     - pwd
-    - ls
+    - ls -lah
     - $(pwd)/.drone/build_steps.sh
     # TODO Test build artifacts
     - echo "Finished building"
