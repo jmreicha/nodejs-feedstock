@@ -21,10 +21,12 @@ steps:
     #BINSTAR_TOKEN: $(BINSTAR_TOKEN)
     BINSTAR_TOKEN: ""
   commands:
+    # TODO This bash shell is non interactive
     - bash
     - env
     # TODO This spits out a message but it can be ignored
     - /opt/docker/bin/entrypoint
+    - conda activate base
     - export THISDIR="$( cd "$( dirname "$0" )" >/dev/null && pwd )"
     - export PROVIDER_DIR="$(basename $THISDIR)"
     #- bash /home/conda/feedstock_root/"$PROVIDER_DIR"/build_steps.sh
