@@ -5,7 +5,7 @@
 # changes to this script, consider a proposal to conda-smithy so that other feedstocks can also
 # benefit from the improvement.
 
-set -xeuo pipefail
+set -euo pipefail
 
 # Conda setup
 
@@ -28,9 +28,12 @@ cp -R /etc/skel $HOME && chown -R conda:conda $HOME/skel && (ls -A1 $HOME/skel |
 cp /root/.condarc $HOME/.condarc && chown conda:conda $HOME/.condarc
 cd $HOME
 
-conda activate base
+# Source Conda environment
+. /opt/conda/bin/activate
 
 # Build
+
+set -x
 
 export PYTHONUNBUFFERED=1
 export FEEDSTOCK_ROOT=/home/conda/feedstock_root
