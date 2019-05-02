@@ -21,9 +21,6 @@ steps:
     #BINSTAR_TOKEN: $(BINSTAR_TOKEN)
     BINSTAR_TOKEN: ""
   commands:
-    #- env
-    - pwd
-    - ls -lah
-    - $(pwd)/.drone/build_steps.sh
+    - ./.drone/build_steps.sh
     # TODO Test build artifacts
     - echo "Finished building"

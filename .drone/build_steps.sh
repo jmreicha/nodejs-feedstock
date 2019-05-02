@@ -37,7 +37,7 @@ set -x
 
 echo "dir: $(pwd)"
 
-# TODO Figure out how to get /drone/src to /home/conda
+# TODO Figure out how to inject yum install
 
 export PYTHONUNBUFFERED=1
 #export FEEDSTOCK_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
