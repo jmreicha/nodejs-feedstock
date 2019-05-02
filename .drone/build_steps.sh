@@ -6,6 +6,32 @@
 # benefit from the improvement.
 
 set -xeuo pipefail
+
+# Conda setup
+
+# Use non-interactive cp
+unalias cp
+# Create conda user with the same uid as the host, so the container can write
+# to mounted volumes
+# Adapted from https://denibertovic.com/posts/handling-permissions-with-docker-volumes/
+USER_ID=${HOST_USER_ID:-9001}
+useradd --shell /bin/bash -u "$USER_ID" -G lucky -o -c "" -m conda
+export HOME=/home/conda
+export USER=conda
+export LOGNAME=conda
+export MAIL=/var/spool/mail/conda
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/conda/bin
+export supkg="su-exec"
+
+chown conda:conda $HOME
+cp -R /etc/skel $HOME && chown -R conda:conda $HOME/skel && (ls -A1 $HOME/skel | xargs -I {} mv -n $HOME/skel/{} $HOME) && rm -Rf $HOME/skel
+cp /root/.condarc $HOME/.condarc && chown conda:conda $HOME/.condarc
+cd $HOME
+
+conda activate base
+
+# Build
+
 export PYTHONUNBUFFERED=1
 export FEEDSTOCK_ROOT=/home/conda/feedstock_root
 export RECIPE_ROOT=/home/conda/recipe_root
