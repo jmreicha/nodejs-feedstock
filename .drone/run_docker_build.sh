@@ -39,7 +39,6 @@ if [ -z "$CONFIG" ]; then
 fi
 
 echo "Docker image: ${DOCKER_IMAGE}"
-exit
 
 if [ -z "${DOCKER_IMAGE}" ]; then
     SHYAML_INSTALLED="$(shyaml --version || echo NO)"

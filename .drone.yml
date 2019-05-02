@@ -12,7 +12,8 @@ platform:
 
 steps:
 - name: Install dependencies
-  image: condaforge/linux-anvil-aarch64
+  image: docker
+  volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
   environment:
     CONFIG: linux_aarch64_
     UPLOAD_PACKAGES: True
@@ -20,6 +21,5 @@ steps:
     DOCKER_IMAGE: condaforge/linux-anvil-aarch64
     #BINSTAR_TOKEN: $(BINSTAR_TOKEN)
   commands:
-    - echo "$DOCKER_IMAGE"
     - ./.drone/run_docker_build.sh
 
