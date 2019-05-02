@@ -33,20 +33,22 @@ cd $HOME
 
 # Build
 
-#set -x
+set -x
 
 echo "dir: $(pwd)"
 echo "ls: $(ls)"
 
 export PYTHONUNBUFFERED=1
-export FEEDSTOCK_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
-export RECIPE_ROOT="${FEEDSTOCK_ROOT}/{{ recipe_dir }}"
+#export FEEDSTOCK_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
+export FEEDSTOCK_ROOT="${CI_WORKSPACE}"
+export RECIPE_ROOT="${FEEDSTOCK_ROOT}/${DRONE_REPO_NAME}"
+export CI_SUPPORT="${RECIPE_ROOT}/.ci_support"
+export ARTIFACTS="${FEEDSTOCK_ROOT}/build_artifacts"
 #export FEEDSTOCK_ROOT=/home/conda/feedstock_root
 #export RECIPE_ROOT=/home/conda/recipe_root
-export CI_SUPPORT=/home/conda/feedstock_root/.ci_support
+#export CI_SUPPORT=/home/conda/feedstock_root/.ci_support
 export CONFIG_FILE="${CI_SUPPORT}/${CONFIG}.yaml"
 
-ARTIFACTS="$FEEDSTOCK_ROOT/build_artifacts"
 mkdir -p "${ARTIFACTS}"
 
 cat >~/.condarc <<CONDARC
