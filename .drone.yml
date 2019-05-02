@@ -13,7 +13,9 @@ platform:
 steps:
 - name: Install dependencies
   image: docker
-  volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
+  volumes:
+  - name: docker
+    path: /var/run/docker.sock
   environment:
     CONFIG: linux_aarch64_
     UPLOAD_PACKAGES: True
@@ -23,3 +25,7 @@ steps:
   commands:
     - ./.drone/run_docker_build.sh
 
+volumes:
+- name: docker
+  host:
+    path: /var/run/docker.sock
