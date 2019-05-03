@@ -33,16 +33,17 @@ conda-build:
 
 CONDARC
 
+conda info
 conda install --yes --quiet conda-forge-ci-setup=2 conda-build -c conda-forge
 
+# TODO Seems like the issue is here
 # set up the condarc
-setup_conda_rc "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
+#setup_conda_rc "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
-run_conda_forge_build_setup
+#run_conda_forge_build_setup
 # make the build number clobber
 make_build_number "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
-# TODO Seems like the issue is here
 conda build "${RECIPE_ROOT}" -m "${CONFIG_FILE}" \
     --clobber-file "${CI_SUPPORT}/clobber_${CONFIG}.yaml"
 

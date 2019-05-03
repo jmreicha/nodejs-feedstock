@@ -60,5 +60,5 @@ steps:
     #BINSTAR_TOKEN: $(BINSTAR_TOKEN)
     BINSTAR_TOKEN: ""
   commands:
-    #- ./.drone/build_and_install.sh
+    - ./.drone/build_and_install.sh
     - echo "Finished building"
