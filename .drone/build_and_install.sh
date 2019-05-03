@@ -33,7 +33,7 @@ cd $HOME
 
 # Build
 
-#set -x
+set -x
 
 export PYTHONUNBUFFERED=1
 FEEDSTOCK_ROOT="${CI_WORKSPACE}"
