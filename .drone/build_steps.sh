@@ -7,10 +7,10 @@
 
 set -euo pipefail
 
+# TODO Figure out slowness and don't export variables
+
 # Conda setup
 
-# Use non-interactive cp
-#unalias cp
 # Create conda user with the same uid as the host, so the container can write
 # to mounted volumes
 # Adapted from https://denibertovic.com/posts/handling-permissions-with-docker-volumes/
@@ -28,16 +28,10 @@ cp -R /etc/skel $HOME && chown -R conda:conda $HOME/skel && (ls -A1 $HOME/skel |
 cp /root/.condarc $HOME/.condarc && chown conda:conda $HOME/.condarc
 cd $HOME
 
-# Source base Conda environment
+# Source the base Conda environment
 . /opt/conda/bin/activate
 
 # Build
-
-set -x
-
-echo "dir: $(pwd)"
-
-# TODO Figure out how to inject yum install
 
 export PYTHONUNBUFFERED=1
 #export FEEDSTOCK_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
@@ -78,3 +72,5 @@ if [[ "${UPLOAD_PACKAGES}" != "False" ]]; then
 fi
 
 touch "${ARTIFACTS}/conda-forge-build-done-${CONFIG}"
+# verify that the end of the script was reached
+#test -f "${ARTIFACTS}/conda-forge-build-done-${CONFIG}"
