@@ -29,13 +29,14 @@ cp /root/.condarc $HOME/.condarc && chown conda:conda $HOME/.condarc
 cd $HOME
 
 # Source the base Conda environment
-. /opt/conda/bin/activate
+. /root/archiconda3/bin/activate root || true
+. /opt/conda/bin/activate || true
 
 # Build
 
 set -x
 
-export PYTHONUNBUFFERED=1
+#export PYTHONUNBUFFERED=1
 FEEDSTOCK_ROOT="${CI_WORKSPACE}"
 RECIPE_ROOT="${FEEDSTOCK_ROOT}/recipe"
 CI_SUPPORT="${FEEDSTOCK_ROOT}/.ci_support"
