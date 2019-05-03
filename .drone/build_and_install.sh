@@ -5,7 +5,7 @@
 # changes to this script, consider a proposal to conda-smithy so that other feedstocks can also
 # benefit from the improvement.
 
-set -euo pipefail
+set -xeuo pipefail
 
 # TODO Figure out slowness and don't export variables
 
@@ -14,29 +14,27 @@ set -euo pipefail
 # Create conda user with the same uid as the host, so the container can write
 # to mounted volumes
 # Adapted from https://denibertovic.com/posts/handling-permissions-with-docker-volumes/
-USER_ID=${HOST_USER_ID:-9001}
-useradd --shell /bin/bash -u "$USER_ID" -G lucky -o -c "" -m conda
-export HOME=/home/conda
-export USER=conda
-export LOGNAME=conda
-export MAIL=/var/spool/mail/conda
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/conda/bin
-export supkg="su-exec"
-
-chown conda:conda $HOME
-cp -R /etc/skel $HOME && chown -R conda:conda $HOME/skel && (ls -A1 $HOME/skel | xargs -I {} mv -n $HOME/skel/{} $HOME) && rm -Rf $HOME/skel
-cp /root/.condarc $HOME/.condarc && chown conda:conda $HOME/.condarc
-cd $HOME
+#USER_ID=${HOST_USER_ID:-9001}
+#useradd --shell /bin/bash -u "$USER_ID" -G lucky -o -c "" -m conda
+#export HOME=/home/conda
+#export USER=conda
+#export LOGNAME=conda
+#export MAIL=/var/spool/mail/conda
+#export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/conda/bin
+#export supkg="su-exec"
+#
+#chown conda:conda $HOME
+#cp -R /etc/skel $HOME && chown -R conda:conda $HOME/skel && (ls -A1 $HOME/skel | xargs -I {} mv -n $HOME/skel/{} $HOME) && rm -Rf $HOME/skel
+#cp /root/.condarc $HOME/.condarc && chown conda:conda $HOME/.condarc
+#cd $HOME
 
 # Source the base Conda environment
-. /root/archiconda3/bin/activate root || true
+. /root/archiconda3/bin/activate || true
 . /opt/conda/bin/activate || true
 
 # Build
 
-set -x
-
-#export PYTHONUNBUFFERED=1
+export PYTHONUNBUFFERED=1
 FEEDSTOCK_ROOT="${CI_WORKSPACE}"
 RECIPE_ROOT="${FEEDSTOCK_ROOT}/recipe"
 CI_SUPPORT="${FEEDSTOCK_ROOT}/.ci_support"
