@@ -3,6 +3,30 @@
 # -*- mode: yaml -*-
 
 ---
+# This pipeline is used to test various build configurations
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+- name: Install dependencies test
+  image: condaforge/linux-anvil-aarch64
+  commands:
+    - yum install -y make git
+    - curl -L -O https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh
+    - bash Archiconda3*.sh -b -p /root/archiconda3
+    - export PATH="/root/archiconda3/bin:$PATH"
+    - . /root/archiconda3/bin/activate root
+    - conda config --set add_pip_as_python_dependency false
+    - conda install -c conda-forge conda-build --yes
+    # Hardcode the config for testing
+    - conda build -m ci_support/linux_.yaml .
+    - export PACKAGE_NAME=`conda build -m ci_support/linux_.yaml . --output`
+
+---
 kind: pipeline
 name: linux_aarch64_
 
@@ -21,6 +45,5 @@ steps:
     #BINSTAR_TOKEN: $(BINSTAR_TOKEN)
     BINSTAR_TOKEN: ""
   commands:
-    - ./.drone/build_steps.sh
-    # TODO Test build artifacts
+    - ./.drone/build_and_install.sh
     - echo "Finished building"
