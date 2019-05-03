@@ -42,7 +42,7 @@ conda install --yes --quiet conda-forge-ci-setup=2 conda-build -c conda-forge
 #setup_conda_rc "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
 # Install additional tools for build
-run_conda_forge_build_setup
+#run_conda_forge_build_setup
 # make the build number clobber
 make_build_number "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 

@@ -35,7 +35,6 @@ steps:
     #- ./.drone/build_and_install.sh
     - conda info
     - cat /root/.condarc
-    - exit
     - conda install --yes --quiet conda-forge-ci-setup=2 conda-build -c conda-forge
     #- setup_conda_rc /drone/src /drone/src/recipe /drone/src/.ci_support/linux_aarch64_.yaml
     - run_conda_forge_build_setup
