@@ -47,17 +47,9 @@ mkdir -p "${ARTIFACTS}"
 cat >~/.condarc <<CONDARC
 
 conda-build:
- root-dir: ${ARTIFACTS}
+  root-dir: ${ARTIFACTS}
 
 CONDARC
-
-echo "conda condarc"
-cat /home/conda/.condarc
-echo "root condarc"
-cat ~/.condarc
-echo "config file"
-cat "${CONFIG_FILE}"
-exit
 
 conda install --yes --quiet conda-forge-ci-setup=2 conda-build -c conda-forge
 
