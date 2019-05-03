@@ -26,12 +26,18 @@ steps:
     - bash Archiconda3*.sh -b -p /root/archiconda3
     - export PATH="/root/archiconda3/bin:$PATH"
     #- . /root/archiconda3/bin/activate root
+    - . /root/archiconda3/bin/activate
     #- conda config --set add_pip_as_python_dependency false
     #- conda install -c conda-forge conda-build --yes
     # Hardcode the config for testing
     #- conda build -m .ci_support/linux_aarch64_.yaml .
     #- export PACKAGE_NAME=`conda build -m ci_support/linux_.yaml . --output`
-    - ./.drone/build_and_install.sh
+    #- ./.drone/build_and_install.sh
+    - conda install --yes --quiet conda-forge-ci-setup=2 conda-build -c conda-forge
+    - setup_conda_rc /drone/src /drone/src/recipe /drone/src/.ci_support/linux_aarch64_.yam
+    - run_conda_forge_build_setup
+    - make_build_number /drone/src /drone/src/recipe /drone/src/.ci_support/linux_aarch64_.yaml
+    - conda build /drone/src/recipe -m /drone/src/.ci_support/linux_aarch64_.yaml --clobber-file /drone/src/.ci_support/clobber_linux_aarch64_.yaml
     - echo "Finished building"
 
 ---
@@ -53,5 +59,5 @@ steps:
     #BINSTAR_TOKEN: $(BINSTAR_TOKEN)
     BINSTAR_TOKEN: ""
   commands:
-    - ./.drone/build_and_install.sh
+    #- ./.drone/build_and_install.sh
     - echo "Finished building"
