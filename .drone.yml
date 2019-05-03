@@ -15,6 +15,8 @@ steps:
 - name: Install dependencies test
   image: condaforge/linux-anvil-aarch64
   commands:
+    - cat ci_support/linux_.yaml
+    - exit
     - yum install -y make git
     - curl -L -O https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh
     - bash Archiconda3*.sh -b -p /root/archiconda3
@@ -23,7 +25,8 @@ steps:
     - conda config --set add_pip_as_python_dependency false
     - conda install -c conda-forge conda-build --yes
     # Hardcode the config for testing
-    - conda build -m ci_support/linux_.yaml .
+    #- conda build -m ci_support/linux_.yaml .
+    - conda build -m .ci_support/linux_aarch64_.yaml .
     - export PACKAGE_NAME=`conda build -m ci_support/linux_.yaml . --output`
 
 ---
