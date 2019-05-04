@@ -37,6 +37,27 @@ conda install --yes --quiet conda-forge-ci-setup=2 conda-build -c conda-forge
 #setup_conda_rc "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
 # TODO Seems like the issue is here
+# Script located here - https://github.com/conda-forge/conda-forge-ci-setup-feedstock/blob/master/recipe/run_conda_forge_build_setup_linux
+
+export CPU_COUNT=2
+export PYTHONUNBUFFERED=1
+
+conda config --set show_channel_urls true
+conda config --set auto_update_conda false
+conda config --set add_pip_as_python_dependency false
+
+export "CONDA_BLD_PATH=/home/conda/feedstock_root/build_artifacts"
+
+mkdir -p "${CONDA_PREFIX}/etc/conda/activate.d"
+echo "export CONDA_BLD_PATH='${CONDA_BLD_PATH}'"         > "${CONDA_PREFIX}/etc/conda/activate.d/conda-forge-ci-setup-activate.sh"
+echo "export CPU_COUNT='${CPU_COUNT}'"                  >> "${CONDA_PREFIX}/etc/conda/activate.d/conda-forge-ci-setup-activate.sh"
+echo "export PYTHONUNBUFFERED='${PYTHONUNBUFFERED}'"    >> "${CONDA_PREFIX}/etc/conda/activate.d/conda-forge-ci-setup-activate.sh"
+
+conda info
+conda config --show-sources
+conda list --show-channel-urls
+
+# Commands above are taken from `run_conda_forge_build_setup`
 #run_conda_forge_build_setup
 
 # make the build number clobber
