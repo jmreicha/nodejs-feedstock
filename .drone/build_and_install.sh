@@ -7,8 +7,6 @@
 
 set -xeuo pipefail
 
-# TODO Figure out slowness and don't export variables
-
 # Conda setup
 
 # Source the base Conda environment
@@ -21,8 +19,8 @@ export PYTHONUNBUFFERED=1
 FEEDSTOCK_ROOT="${CI_WORKSPACE}"
 RECIPE_ROOT="${FEEDSTOCK_ROOT}/recipe"
 CI_SUPPORT="${FEEDSTOCK_ROOT}/.ci_support"
-ARTIFACTS="${FEEDSTOCK_ROOT}/build_artifacts"
 CONFIG_FILE="${CI_SUPPORT}/${CONFIG}.yaml"
+ARTIFACTS="${FEEDSTOCK_ROOT}/build_artifacts"
 
 mkdir -p "${ARTIFACTS}"
 
@@ -33,16 +31,14 @@ mkdir -p "${ARTIFACTS}"
 #
 #CONDARC
 
-conda info
-cat /root/.condarc
 conda install --yes --quiet conda-forge-ci-setup=2 conda-build -c conda-forge
 
-# TODO Seems like the issue is here
 # set up the condarc
 #setup_conda_rc "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
-# Install additional tools for build
+# TODO Seems like the issue is here
 #run_conda_forge_build_setup
+
 # make the build number clobber
 make_build_number "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
