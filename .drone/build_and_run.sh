@@ -12,7 +12,7 @@ set -xeuo pipefail
 
 FEEDSTOCK_ROOT="${CI_WORKSPACE}"
 RECIPE_ROOT="${FEEDSTOCK_ROOT}/recipe"
-ARTIFACTS="$FEEDSTOCK_ROOT/build_artifacts"
+ARTIFACTS="${FEEDSTOCK_ROOT}/build_artifacts"
 
 if [ -z "$CONFIG" ]; then
     set +x
@@ -34,7 +34,7 @@ rm -f "$DONE_CANARY"
 #export PYTHONUNBUFFERED=1
 #export FEEDSTOCK_ROOT=/home/conda/feedstock_root
 #export RECIPE_ROOT=/home/conda/recipe_root
-export CI_SUPPORT="{$FEEDSTOCK_ROOT}"/.ci_support
+export CI_SUPPORT="${FEEDSTOCK_ROOT}/.ci_support"
 export CONFIG_FILE="${CI_SUPPORT}/${CONFIG}.yaml"
 
 cat >~/.condarc <<CONDARC
