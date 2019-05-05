@@ -15,7 +15,7 @@ steps:
     PLATFORM: linux-aarch64
     DOCKER_IMAGE: condaforge/linux-anvil-aarch64
     #BINSTAR_TOKEN: $(BINSTAR_TOKEN)
-    BINSTAR_TOKEN: ""
   commands:
-    - ./.drone/build_and_install.sh
-    - echo "Finished building"
+    - ./.drone/build_and_run.sh
+    - echo "Done building"
+
