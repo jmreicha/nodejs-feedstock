@@ -7,7 +7,7 @@ platform:
   arch: arm64
 
 steps:
-- name: Install dependencies
+- name: Install and build
   image: condaforge/linux-anvil-aarch64
   environment:
     CONFIG: linux_aarch64_
