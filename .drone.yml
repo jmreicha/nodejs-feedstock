@@ -17,8 +17,8 @@ steps:
     #BINSTAR_TOKEN: ""
   commands:
     - . /opt/conda/bin/activate
-    - export FEEDSTOCK_ROOT="${CI_WORKSPACE}"
-    - export RECIPE_ROOT="${FEEDSTOCK_ROOT}/recipe"
-    - echo "Done building"
+    - export FEEDSTOCK_ROOT="$CI_WORKSPACE"
+    - export RECIPE_ROOT="$FEEDSTOCK_ROOT/recipe"
     - ./.drone/build_steps.sh
+    - echo "Done building"
 
