@@ -16,6 +16,9 @@ steps:
     DOCKER_IMAGE: condaforge/linux-anvil-aarch64
     #BINSTAR_TOKEN: ""
   commands:
-    - ./.drone/build_and_run.sh
+    - . /opt/conda/bin/activate
+    - export FEEDSTOCK_ROOT="${CI_WORKSPACE}"
+    - export RECIPE_ROOT="${FEEDSTOCK_ROOT}/recipe"
     - echo "Done building"
+    - ./.drone/build_steps.sh
 
