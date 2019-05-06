@@ -31,7 +31,7 @@ DONE_CANARY="$ARTIFACTS/conda-forge-build-done-${CONFIG}"
 rm -f "$DONE_CANARY"
 
 # Conda build
-./build_steps.sh
+./.drone/build_steps.sh
 
 # verify that the end of the script was reached
 test -f "$DONE_CANARY"
