@@ -6,6 +6,12 @@ platform:
   os: linux
   arch: arm64
 
+build_commands: &build_commands
+  - export FEEDSTOCK_ROOT="$CI_WORKSPACE"
+  - export RECIPE_ROOT="$FEEDSTOCK_ROOT/recipe"
+  - export CI=drone
+  - echo "Done building"
+
 steps:
 - name: Install and build
   image: condaforge/linux-anvil-aarch64
@@ -14,12 +20,5 @@ steps:
     UPLOAD_PACKAGES: True
     PLATFORM: linux-aarch64
     #BINSTAR_TOKEN: ""
-  commands:
-    - export FEEDSTOCK_ROOT="$CI_WORKSPACE"
-    - export RECIPE_ROOT="$FEEDSTOCK_ROOT/recipe"
-    - export CI=drone
-    - bash
-    - . /opt/docker/bin/entrypoint_source
-    - ./.drone/build_steps.sh
-    - echo "Done building"
+  commands: *build_commands
 
