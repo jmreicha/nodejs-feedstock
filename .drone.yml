@@ -15,9 +15,9 @@ steps:
     PLATFORM: linux-aarch64
     #BINSTAR_TOKEN: ""
   commands:
-    - . /opt/conda/bin/activate
     - export FEEDSTOCK_ROOT="$CI_WORKSPACE"
     - export RECIPE_ROOT="$FEEDSTOCK_ROOT/recipe"
-    - ./.drone/build_steps.sh
+    - export CI=drone
+    - bash -c '. /opt/docker/bin/entrypoint_source && ./.drone/build_steps.sh'
     - echo "Done building"
 
