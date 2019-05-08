@@ -18,6 +18,8 @@ steps:
     - export FEEDSTOCK_ROOT="$CI_WORKSPACE"
     - export RECIPE_ROOT="$FEEDSTOCK_ROOT/recipe"
     - export CI=drone
-    - bash -c '. /opt/docker/bin/entrypoint_source && ./.drone/build_steps.sh'
+    - bash
+    - . /opt/docker/bin/entrypoint_source
+    - ./.drone/build_steps.sh
     - echo "Done building"
 
