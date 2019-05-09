@@ -12,8 +12,7 @@ export RECIPE_ROOT="${RECIPE_ROOT:-/home/conda/recipe_root}"
 export CI_SUPPORT="${FEEDSTOCK_ROOT}/.ci_support"
 export CONFIG_FILE="${CI_SUPPORT}/${CONFIG}.yaml"
 
-ls -alh "${FEEDSTOCK_ROOT}"
-exit
+#ls -alh "${FEEDSTOCK_ROOT}"
 
 cat >~/.condarc <<CONDARC
 
