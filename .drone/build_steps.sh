@@ -12,6 +12,12 @@ export RECIPE_ROOT="${RECIPE_ROOT:-/home/conda/recipe_root}"
 export CI_SUPPORT="${FEEDSTOCK_ROOT}/.ci_support"
 export CONFIG_FILE="${CI_SUPPORT}/${CONFIG}.yaml"
 
+whoami
+ls -alh "${FEEDSTOCK_ROOT}"
+mkdir -p "${FEEDSTOCK_ROOT}/build_artifacts"
+ls -alh "${FEEDSTOCK_ROOT}/build_artifacts"
+exit
+
 cat >~/.condarc <<CONDARC
 
 conda-build:
