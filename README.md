@@ -39,6 +39,7 @@ Current build status
   </tr>
     
   <tr>
+    # TODO Toggle this only if Azure is used
     <td>Azure</td>
     <td>
       <details>
