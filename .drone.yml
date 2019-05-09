@@ -18,6 +18,7 @@ steps:
     - export FEEDSTOCK_ROOT="$CI_WORKSPACE"
     - export RECIPE_ROOT="$FEEDSTOCK_ROOT/recipe"
     - export CI=drone
+    - mkdir -p "$FEEDSTOCK_ROOT/build_artifacts/work"
     - /opt/docker/bin/entrypoint $FEEDSTOCK_ROOT/.drone/build_steps.sh
     - echo "Done building"
 
