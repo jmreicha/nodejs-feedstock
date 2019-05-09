@@ -19,6 +19,9 @@ steps:
     - export RECIPE_ROOT="$FEEDSTOCK_ROOT/recipe"
     - export CI=drone
     - mkdir -p "$FEEDSTOCK_ROOT/build_artifacts/work"
+    - ls -alh "$FEEDSTOCK_ROOT"
+    - ls -alh "$FEEDSTOCK_ROOT/build_artifacts"
+    - exit
     - /opt/docker/bin/entrypoint $FEEDSTOCK_ROOT/.drone/build_steps.sh
     - echo "Done building"
 
